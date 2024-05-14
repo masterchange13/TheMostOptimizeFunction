@@ -61,7 +61,7 @@ def get_std(x):
     5. 求损失函数
 """
 def get_loss(y, y_pred):
-    return nn.MSELoss()(y, y_pred)
+    return np.sum((y -  y_pred)**2)
 
 """
     6. 梯度更新
@@ -79,6 +79,8 @@ def get_grad(f, x):
 
     for i in range(x.size):
         tmp_value = x[i]
+        print(x.dtype)
+        print(tmp_value.dtype)
         x[i] = float(tmp_value) + h
         fxh1 = f(x)
 
@@ -89,3 +91,37 @@ def get_grad(f, x):
         x[i] = tmp_value
 
     return grad
+
+"""
+    8. update value
+"""
+def update_value(x, lr, grad):
+    x = x - lr*grad
+    return x
+
+"""
+    9 梯度公式
+"""
+def gradient(data):
+    x, y = data
+    # 计算各部分值
+    part1 = 1 + np.power((1.5 - x + x * y), 2)
+    part2 = np.power((2.25 - x + x * y ** 2), 2)
+    part3 = np.power((2.625 - x + x * y ** 3), 2)
+
+    # 总和用于分母
+    sum_parts = part1 + part2 + part3
+
+    # 计算关于 x 的偏导数项
+    df_dx_part1 = -2 * (1.5 - x + x * y) - y * (1.5 - x + x * y) ** 2
+    df_dx_part2 = -2 * (2.25 - x + x * y ** 2) - y ** 2 * (2.25 - x + x * y ** 2) ** 2
+    df_dx_part3 = -2 * (2.625 - x + x * y ** 3) - y ** 3 * (2.625 - x + x * y ** 3) ** 2
+    df_dx = (df_dx_part1 + df_dx_part2 + df_dx_part3) / (10 * sum_parts)
+
+    # 计算关于 y 的偏导数项
+    df_dy_part1 = 2 * x * (1.5 - x + x * y)
+    df_dy_part2 = 2 * x * y * (2.25 - x + x * y ** 2)
+    df_dy_part3 = 2 * x * y ** 2 * (2.625 - x + x * y ** 3)
+    df_dy = (df_dy_part1 + df_dy_part2 + df_dy_part3) / (10 * sum_parts)
+
+    return np.array([df_dx, df_dy])

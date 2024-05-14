@@ -23,7 +23,9 @@ from utils import *
     x：矩阵
     y：矩阵
 """
-def f(x, y):
+def f(data):
+    x = data[0]
+    y = data[1]
     part1 = 1 + pow((1.5 - x + x*y), 2)
     part2 = pow((2.25 - x + x*y**2), 2)
     part3 = pow((2.625 - x + x*y**3), 2)
@@ -54,15 +56,42 @@ def f(x, y):
     target: get the best x for f
 """
 def solve_threshold(f, lr, threshold, x, y_pred):
-    grad = get_grad(f, x)
+
+    """
+        画出图形
+            point
+            point_y
+            loss_g
+    """
+    point = []
+    point_y = []
+    loss_g = []
+    count = 0
+    real_count = 0
+
+    grad = gradient(x)
+    x = update_value(x, lr, grad)
     new_y = f(x)
-    loss =  get_loss(new_y, y_pred)
+    loss = get_loss(new_y, y_pred)
     while loss > threshold:
-        x = x - lr * grad
-        grad = get_grad(f, x)
+        grad = gradient(x)
+        x = update_value(x, lr, grad)
         new_y = f(x)
         loss = get_loss(new_y, y_pred)
 
-    return f(x), x
+        # update lr
+        if count >= 1000:
+            lr = lr / 10
+            count = 0
+
+        point.append(x)
+        point_y.append(new_y)
+        loss_g.append(loss)
+        count += 1
+        real_count += 1
+
+        print(loss)
+
+    return f(x), x, point, point_y, loss_g
 
 

@@ -22,17 +22,26 @@ import torch.nn as nn
 import cv2
 import numpy as np
 import function as func
+import matplotlib.pyplot as plt
+
+def make_data_to_graph(point, point_y, loss_g):
+    plt.plot(point, point_y, 'ro')
+    plt.plot(point, loss_g, 'b-')
+    plt.show()
+    return 0
 
 if __name__ == '__main__':
 
     """"
         init value
     """
-    lr = 1e-5
-    thredhold = 1e-4
-    x = np.random.random([1, 3])
-    y_pred = np.random.random([1, 3])
+    lr = 1e-3
+    thredhold = 1e-2
+    x = np.random.random([2])
+    y_pred = np.array([1, 1])
 
-    f_count, x_count = func.solve_threshold(func.f, lr, thredhold, x, y_pred)
+    f_count, x_count, point, point_y, loss_g = func.solve_threshold(func.f, lr, thredhold, x, y_pred)
     print(f_count)
     print(x_count)
+
+    make_data_to_graph(point, point_y, loss_g)

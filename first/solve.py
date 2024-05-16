@@ -25,7 +25,9 @@ import function as func
 import matplotlib.pyplot as plt
 
 def make_data_to_graph(point, point_y, loss_g):
+    plt.subplot(1, 2, 1)
     plt.plot(point, point_y, 'ro')
+    plt.subplot(1, 2, 2)
     plt.plot(point, loss_g, 'b-')
     plt.show()
     return 0
@@ -35,8 +37,8 @@ if __name__ == '__main__':
     """"
         init value
     """
-    lr = 1e-3
-    thredhold = 1e-2
+    lr = 1e-4
+    thredhold = 1e-4
     x = np.random.random([2])
     y_pred = np.array([1, 1])
 

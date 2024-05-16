@@ -70,14 +70,17 @@ def solve_threshold(f, lr, threshold, x, y_pred):
     real_count = 0
 
     grad = gradient(x)
+    old_y = f(x)
     x = update_value(x, lr, grad)
     new_y = f(x)
-    loss = get_loss(new_y, y_pred)
+    loss = get_loss(new_y, old_y)
     while loss > threshold:
         grad = gradient(x)
+        old_y = new_y
         x = update_value(x, lr, grad)
         new_y = f(x)
-        loss = get_loss(new_y, y_pred)
+        # loss = get_loss(new_y, y_pred)
+        loss = get_loss(new_y, old_y)
 
         # update lr
         if count >= 1000:

@@ -95,6 +95,6 @@ def solve_threshold(f, lr, threshold, x, y_pred):
 
         print(loss)
 
-    return f(x), x, point, point_y, loss_g
+    return f(x), x, point, point_y, loss_g, real_count
 
 

@@ -26,7 +26,7 @@ import matplotlib.pyplot as plt
 
 def make_data_to_graph(point, point_y, loss_g):
     plt.subplot(1, 2, 1)
-    plt.plot(point, point_y, 'ro')
+    plt.plot(point, point_y, 'ro-')
     plt.subplot(1, 2, 2)
     plt.plot(point, loss_g, 'b-')
     plt.show()
@@ -39,11 +39,15 @@ if __name__ == '__main__':
     """
     lr = 1e-4
     thredhold = 1e-4
-    x = np.random.random([2])
+    x = np.array([100, 100])
     y_pred = np.array([1, 1])
 
-    f_count, x_count, point, point_y, loss_g = func.solve_threshold(func.f, lr, thredhold, x, y_pred)
-    print(f_count)
-    print(x_count)
+    f_x, x, point, point_y, loss_g, real_count = func.solve_threshold(func.f, lr, thredhold, x, y_pred)
+    print("f_x is {}", f_x)
+    print("x is {}", x)
+
+    print(point)
+    print(point_y)
+    print("real_count is {}", real_count)
 
     make_data_to_graph(point, point_y, loss_g)

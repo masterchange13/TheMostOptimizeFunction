@@ -29,3 +29,5 @@ if __name__ == '__main__':
 
     plt.plot(x[:][0], x[:][1])
     plt.show()
+[0], x[:][1])
+    plt.show()

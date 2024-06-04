@@ -79,4 +79,6 @@ line2.set_global_opts(
     title_opts=TitleOpts(title="损失值与参数的关系", pos_left="center", pos_bottom="1%"),
     toolbox_opts=ToolboxOpts(is_show=True),
 )
+line2.render("损失值与参数的关系.html")s=ToolboxOpts(is_show=True),
+)
 line2.render("损失值与参数的关系.html")

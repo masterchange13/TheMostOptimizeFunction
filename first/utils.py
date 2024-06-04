@@ -125,3 +125,7 @@ def gradient(data):
     df_dy = (df_dy_part1 + df_dy_part2 + df_dy_part3) / (10 * sum_parts)
 
     return np.array([df_dx, df_dy])
+ x * y ** 3)
+    df_dy = (df_dy_part1 + df_dy_part2 + df_dy_part3) / (10 * sum_parts)
+
+    return np.array([df_dx, df_dy])

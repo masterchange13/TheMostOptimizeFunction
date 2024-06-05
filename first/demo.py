@@ -80,5 +80,5 @@ line2.set_global_opts(
     toolbox_opts=ToolboxOpts(is_show=True),
 )
 line2.render("损失值与参数的关系.html")s=ToolboxOpts(is_show=True),
-)
+
 line2.render("损失值与参数的关系.html")

@@ -50,6 +50,6 @@ if __name__ == '__main__':
     print(point_y)
     print("real_count is {}", real_count)
 
-    make_data_to_graph(point, point_y, loss_g)t)
+    make_data_to_graph(point, point_y, loss_g)
 
     make_data_to_graph(point, point_y, loss_g)
